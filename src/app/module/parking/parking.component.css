@@ -1,0 +1,16 @@
+.charge-box {
+  background: #efefef;
+  border-radius: 6px;
+  margin: 0 10px;
+  height: 60px;
+  position: relative;
+  width: -webkit-fill-available;
+}
+.charge-amount {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  font-weight: 500;
+}

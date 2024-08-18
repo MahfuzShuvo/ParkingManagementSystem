@@ -1,0 +1,120 @@
+<div class="header-title">
+  <div class="title">Parking Information</div>
+  <button type="button" class="common-btn" (click)="openModal()">+ Add Parking</button>
+</div>
+<div class="parking-table mt-3">
+  <table>
+    <thead>
+      <tr>
+        <th>Owner Name</th>
+        <th>Vehicle Type</th>
+        <th>License No.</th>
+        <th>Entry Time</th>
+        <th>Exit Time</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of lstVehicleParking">
+        <td>{{item.ownerName}}</td>
+        <td>{{getType(item.type)}}</td>
+        <td>{{item.licenseNumber}}</td>
+        <td>{{item.carEntryDate | date: 'hh:mm a'}}</td>
+        <td>{{item.carExitDate | date: 'hh:mm a'}}</td>
+        <td>{{(item.parkingStatus == 0) ? 'OUT' : 'IN'}}</td>
+        <td>
+          <button type="button" class="common-btn edit" (click)="editParking(item)">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<ng-template #parkingModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add Parking</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="vehicleType" class="form-label">Vehicle Type</label>
+            <select name="vehicleType" id="vehicleType" class="form-control" (change)="onChangeType($event)"
+              [(ngModel)]="objVehicaleParking.type">
+              <option [value]="0" disabled>Select type</option>
+              <option [value]="1">Bike</option>
+              <option [value]="2">Car</option>
+              <option [value]="3">Bus</option>
+              <option [value]="4">Cycle</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="vehicleLicense" class="form-label">Vehicle License</label>
+            <input type="text" class="form-control" name="vehicleLicense" id="vehicleLicense"
+              placeholder="Enter vehicle license no." [(ngModel)]="objVehicaleParking.licenseNumber">
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="ownerName" class="form-label">Owner Name</label>
+            <input type="text" class="form-control" name="ownerName" id="ownerName" placeholder="Enter owner name"
+              [(ngModel)]="objVehicaleParking.ownerName">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="ownerPhone" class="form-label">Owner Phone</label>
+            <input type="text" class="form-control" name="ownerPhone" id="ownerPhone" placeholder="Enter owner phone"
+              [(ngModel)]="objVehicaleParking.ownerPhone">
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="form-group">
+          <label for="ownerPhone" class="form-label">Owner Address</label>
+          <textarea name="ownerAddress" id="ownerAddress" class="form-control" placeholder="Enter owner address"
+            [(ngModel)]="objVehicaleParking.ownerAddress"></textarea>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="entryDateTime" class="form-label">Entry Date & Time</label>
+            <input type="datetime-local" placeholder="00/00/0000" class="form-control"
+              [(ngModel)]="objVehicaleParking.carEntryDate" (change)="changeEntryDate($event)">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="exitDateTime" class="form-label">Exit Date & Time</label>
+            <input type="datetime-local" placeholder="00/00/0000" class="form-control"
+              [(ngModel)]="objVehicaleParking.carExitDate" (change)="changeExitDate($event)">
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="charge-box">
+          <div class="charge-amount">
+            Parking Charge: <b>{{objVehicaleParking.parkingCharge}}</b>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="button-group d-flex align-items-center gap-2 justify-content-end">
+          <button type="button" class="common-btn success" (click)="saveVehicleParking()">Save</button>
+          <button type="button" class="common-btn danger" (click)="modalRef?.hide()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

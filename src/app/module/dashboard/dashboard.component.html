@@ -1,0 +1,27 @@
+<div class="header-title">
+  <div class="title">Dashboard</div>
+  <!-- <button type="button" class="common-btn">+ Add Parking</button> -->
+</div>
+<div class="widget-section mt-3">
+
+  <div class="card widget-card d-flex flex-column gap-1">
+    <div class="content">Bike: <span>{{getCount(1)}}</span></div>
+    <div class="content">Car: <span>{{getCount(2)}}</span></div>
+    <div class="content">Bus: <span>{{getCount(3)}}</span></div>
+    <div class="content">Cycle: <span>{{getCount(4)}}</span></div>
+  </div>
+  <div class="main-widget-section">
+    <div class="card widget-card">
+      <div class="head">Total Parked</div>
+      <div class="count">{{lstVehicleParking.length}}</div>
+    </div>
+    <div class="card widget-card">
+      <div class="head">Total Empty Slot</div>
+      <div class="count">{{100 - lstVehicleParking.length}}</div>
+    </div>
+    <div class="card widget-card">
+      <div class="head">Total Slot</div>
+      <div class="count">100</div>
+    </div>
+  </div>
+</div>

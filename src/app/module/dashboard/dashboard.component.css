@@ -1,0 +1,20 @@
+.widget-section {
+  display: grid;
+  grid-template-columns: 30% 65%;
+  gap: 10px;
+}
+.widget-card {
+  border-radius: 10px;
+  box-shadow: 0 2px 5px #00000025;
+  border: none;
+  padding: 20px;
+}
+.main-widget-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.widget-card .content {
+  background: #efefef;
+  padding: 10px;
+}
